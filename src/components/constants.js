@@ -12,6 +12,7 @@ export const fromCurrency = {
   placeholder: "Select a currency",
   optionClass: "live-data__fromCurrncy",
   data: [
+    "BTC (Bit Coin)",
     "USD  (US Dollar)",
     "EUR (Eurozone Euro)",
     "JPY (Japan Yen)",
@@ -30,6 +31,7 @@ export const toCurrency = {
   placeholder: "Select a currency",
   optionClass: "live-data__toCurrncy",
   data: [
+    "BTC (Bit Coin)",
     "USD  (US Dollar)",
     "EUR (Eurozone Euro)",
     "JPY (Japan Yen)",

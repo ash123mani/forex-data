@@ -5,6 +5,7 @@ import { Form, Button } from "antd";
 
 import TagLine from "../tagLine";
 import SelectOption from "../selectOption";
+import ExchangeRateData from "../exchangeRateData";
 import { fetchExchangeRates } from "../../redux/actions/exchangeRates";
 import { queryType, fromCurrency, toCurrency } from "../constants";
 
@@ -45,10 +46,17 @@ class LiveDatas extends React.Component {
             </Button>
           </Form.Item>
         </Form>
+        {this.props.exchangeData ? <ExchangeRateData /> : null}
       </div>
     );
   }
 }
+
+const mapStateToProps = state => {
+  return {
+    exchangeData: state.exchangeRates["Realtime Currency Exchange Rate"]
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -59,7 +67,7 @@ const mapDispatchToProps = dispatch => {
 const FormLiveData = Form.create({ name: "coordinated" })(LiveDatas);
 
 const LiveData = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(FormLiveData);
 

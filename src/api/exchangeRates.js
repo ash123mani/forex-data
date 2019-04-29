@@ -1,7 +1,5 @@
 import axios from "axios";
-
-const baseUrl = "https://www.alphavantage.co/query";
-const apiKey = "8WGDVFGC8K7W9T2E";
+import { baseUrl, apiKey } from "./_constants";
 
 export default {
   fetchExchangeRates: args => {

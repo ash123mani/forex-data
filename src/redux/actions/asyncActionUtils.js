@@ -33,6 +33,7 @@ const getAsyncAction = ({ actionTypePrefix, asyncFunc }) => {
         .then(res => {
           console.log("respons is", res);
           if (res.status === 200) {
+            console.log("typechecking", typeof res.data);
             dispatch(successAction(res.data));
           } else {
             throw new Error(res);
