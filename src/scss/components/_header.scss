@@ -1,0 +1,73 @@
+.header {
+  display: flex;
+  .home-link {
+    position: absolute;
+    top: 0;
+    left: 10px;
+    animation: 3s ease-out 0s 1 slideFromLeft;
+    margin: 10px 0 5px 0;
+
+    a {
+      @include header-link;
+    }
+    &::after {
+      @include underline;
+    }
+  }
+
+  .about-link {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    animation: 3s ease-out 0s 1 slideFromRight;
+    margin: 10px 0 5px 0;
+    a {
+      @include header-link;
+    }
+    &::after {
+      @include underline;
+    }
+  }
+
+  &-tagline {
+    position: relative;
+    left: 35%;
+    width: fit-content;
+    p {
+      color: white;
+      font-size: 25px;
+      margin: 10px 0 0 10px;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 100%;
+      animation: type 3s steps(60, end);
+    }
+    p::after {
+      @include underline;
+    }
+  }
+
+  @keyframes type {
+    from {
+      width: 0;
+    }
+  }
+
+  @keyframes slideFromLeft {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+}
