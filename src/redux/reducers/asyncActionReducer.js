@@ -8,7 +8,9 @@ export default ({ actionTypePrefix, objectInitialState, isFetchingInitialState }
   objectsReducer: (state = objectInitialState, action) => {
     switch (action.type) {
       case actionTypePrefix + FETCH_SUCCESS:
-        return Object.assign({}, state, action.payload);
+        return Object.assign({}, state, { data: action.payload });
+      case actionTypePrefix + actionTypes.INTERVAL:
+        return Object.assign({}, state, { interval: action.payload });
       default:
         return state;
     }

@@ -25,4 +25,24 @@
   .ant-form-item {
     margin-right: 20px;
   }
+  &__option,
+  &__fromCurrency,
+  &__toCurrency,
+  &__timeInterval {
+    color: black;
+    font-size: 15px;
+    padding: 10px 12px;
+    border: 1px solid black;
+  }
+  .ant-select-selection__placeholder {
+    color: indigo;
+    font-size: 15px;
+  }
+  .ant-select-selection-selected-value {
+    color: indigo;
+    font-size: 15px;
+  }
+  .ant-select-arrow .ant-select-arrow-icon {
+    color: indigo;
+  }
 }

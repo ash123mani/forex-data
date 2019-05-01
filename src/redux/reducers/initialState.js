@@ -1,5 +1,12 @@
 export default {
-  exchangeRates: {},
+  exchangeRates: {
+    data: {}
+  },
+  intraDay: {
+    interval: "",
+    data: {}
+  },
 
+  isFetchingIntraDay: false,
   isFetchingExchangeRates: false
 };

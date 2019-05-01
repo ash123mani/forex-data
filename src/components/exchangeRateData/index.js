@@ -1,12 +1,11 @@
 import React from "react";
 import "antd/dist/antd.css";
 import { Card } from "antd";
-import { connect } from "react-redux";
-// import ing from '../../assets'
 
 class ExchangeRateData extends React.Component {
   render() {
-    console.log("hi", this.props);
+    const { exchangeData } = this.props;
+
     return (
       <div className='exchange-data'>
         <Card
@@ -22,25 +21,16 @@ class ExchangeRateData extends React.Component {
           }}
           headStyle={{ fontWeight: "bolder", fontSize: "24px", border: "1px solid white" }}
         >
-          <p>1. From_Currency Code: {this.props.exchangeData["1. From_Currency Code"]}</p>
-          <p>2. From_Currency Name: {this.props.exchangeData["2. From_Currency Name"]}</p>
-          <p>3. To_Currency Code: {this.props.exchangeData["3. To_Currency Code"]}</p>
-          <p>4. To_Currency Name: {this.props.exchangeData["4. To_Currency Name"]}</p>
-          <p>5. Exchange Rate: {this.props.exchangeData["5. Exchange Rate"]}</p>
-          <p>6. Last Refreshed: {this.props.exchangeData["6. Last Refreshed"]}</p>
+          <p>1. From_Currency Code: {exchangeData["1. From_Currency Code"]}</p>
+          <p>2. From_Currency Name: {exchangeData["2. From_Currency Name"]}</p>
+          <p>3. To_Currency Code: {exchangeData["3. To_Currency Code"]}</p>
+          <p>4. To_Currency Name: {exchangeData["4. To_Currency Name"]}</p>
+          <p>5. Exchange Rate: {exchangeData["5. Exchange Rate"]}</p>
+          <p>6. Last Refreshed: {exchangeData["6. Last Refreshed"]}</p>
         </Card>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    exchangeData: state.exchangeRates["Realtime Currency Exchange Rate"]
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  null
-)(ExchangeRateData);
+export default ExchangeRateData;

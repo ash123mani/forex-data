@@ -1,0 +1,16 @@
+.intra-day-data {
+}
+
+.intra-day-wrapper {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  top: 34%;
+  background: #563747bf;
+  .intra-day__date {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: -10px;
+  }
+}

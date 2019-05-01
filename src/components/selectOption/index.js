@@ -5,17 +5,18 @@ import { Select, Form } from "antd";
 const Option = Select.Option;
 
 class SelectOption extends React.Component {
-  state = {
-    selectedCurrency: ""
-  };
   onChange = value => {
-    console.log(`selected ${value}`);
-    this.setState({ selectedCurrency: value });
+    if (this.props.handleOptionsChange) {
+      this.props.handleOptionsChange(value);
+    }
+    if (this.props.handleIntervalChange) {
+      this.props.handleIntervalChange(value);
+    }
   };
   render() {
     const {
       getFieldDecorator,
-      superData: { errorMessage, name, placeholder, data }
+      superData: { errorMessage, name, placeholder, data, optionClass }
     } = this.props;
     return (
       <Form.Item>
@@ -38,7 +39,7 @@ class SelectOption extends React.Component {
           >
             {data.map((item, index) => {
               return (
-                <Option value={item.toLowerCase()} key={index}>
+                <Option value={item.toLowerCase()} key={index} className={optionClass}>
                   {item}
                 </Option>
               );

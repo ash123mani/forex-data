@@ -1,15 +1,16 @@
 import React from "react";
-import { connect } from "react-redux";
 import "antd/dist/antd.css";
 import { Form, Button } from "antd";
 
 import TagLine from "../tagLine";
 import SelectOption from "../selectOption";
-import ExchangeRateData from "../exchangeRateData";
-import { fetchExchangeRates } from "../../redux/actions/exchangeRates";
-import { queryType, fromCurrency, toCurrency } from "../constants";
+import { queryType, fromCurrency, toCurrency, timeInterval } from "../constants";
 
-class LiveDatas extends React.Component {
+class FormLiveData extends React.Component {
+  state = {
+    selectedOption: ""
+  };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -22,10 +23,26 @@ class LiveDatas extends React.Component {
               toCurrency: values.toCurrency.slice(0, 3).toUpperCase()
             });
             break;
+          case "intraday":
+            this.props.fetchIntraDay({
+              fromCurrency: values.fromCurrency.slice(0, 3).toUpperCase(),
+              toCurrency: values.toCurrency.slice(0, 3).toUpperCase(),
+              timeInterval: values.timeInterval
+            });
+            break;
           default:
         }
       }
     });
+  };
+
+  handleOptionsChange = value => {
+    this.setState({ selectedOption: value });
+    console.log(`live data selected ${value}`);
+  };
+
+  handleIntervalChange = value => {
+    this.props.setTimeInterval(value);
   };
 
   render() {
@@ -37,7 +54,18 @@ class LiveDatas extends React.Component {
           text='Select your options to get Exchange Rates,Intraday, Daily, Weekly, Monthly Data.'
         />
         <Form onSubmit={this.handleSubmit}>
-          <SelectOption superData={queryType} getFieldDecorator={getFieldDecorator} />
+          <SelectOption
+            superData={queryType}
+            getFieldDecorator={getFieldDecorator}
+            handleOptionsChange={this.handleOptionsChange}
+          />
+          {this.state.selectedOption === "intraday" ? (
+            <SelectOption
+              superData={timeInterval}
+              getFieldDecorator={getFieldDecorator}
+              handleIntervalChange={this.handleIntervalChange}
+            />
+          ) : null}
           <SelectOption superData={fromCurrency} getFieldDecorator={getFieldDecorator} />
           <SelectOption superData={toCurrency} getFieldDecorator={getFieldDecorator} />
           <Form.Item wrapperCol={{ span: 12, offset: 5 }}>
@@ -46,29 +74,11 @@ class LiveDatas extends React.Component {
             </Button>
           </Form.Item>
         </Form>
-        {this.props.exchangeData ? <ExchangeRateData /> : null}
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    exchangeData: state.exchangeRates["Realtime Currency Exchange Rate"]
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchExchangeRates: currency => dispatch(fetchExchangeRates(currency))
-  };
-};
-
-const FormLiveData = Form.create({ name: "coordinated" })(LiveDatas);
-
-const LiveData = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(FormLiveData);
+const LiveData = Form.create({ name: "coordinated" })(FormLiveData);
 
 export default LiveData;

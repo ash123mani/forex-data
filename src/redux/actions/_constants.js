@@ -1,9 +1,12 @@
 export const prefixes = {
-  EXCHANGE_RATE: "EXCHANGE_RATE/"
+  EXCHANGE_RATE: "EXCHANGE_RATE/",
+  INTRA_DAY: "INTRA_DAY/"
 };
 
 export const actionTypes = {
-  FETCH: "FETCH:"
+  FETCH: "FETCH:",
+
+  INTERVAL: "INTERVAL"
 };
 
 export const status = {

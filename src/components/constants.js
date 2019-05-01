@@ -9,8 +9,8 @@ export const queryType = {
 export const fromCurrency = {
   name: "fromCurrency",
   errorMessage: "Please select a currency",
-  placeholder: "Select a currency",
-  optionClass: "live-data__fromCurrncy",
+  placeholder: "From currency",
+  optionClass: "live-data__fromCurrency",
   data: [
     "BTC (Bit Coin)",
     "USD  (US Dollar)",
@@ -28,8 +28,8 @@ export const fromCurrency = {
 export const toCurrency = {
   name: "toCurrency",
   errorMessage: "Please select a currency",
-  placeholder: "Select a currency",
-  optionClass: "live-data__toCurrncy",
+  placeholder: "To currency",
+  optionClass: "live-data__toCurrency",
   data: [
     "BTC (Bit Coin)",
     "USD  (US Dollar)",
@@ -42,4 +42,12 @@ export const toCurrency = {
     "NZD (New Zealand  Dollar)",
     "INR (India Rupee)"
   ]
+};
+
+export const timeInterval = {
+  name: "timeInterval",
+  errorMessage: "Please Select atime interval",
+  placeholder: "Select a time interval",
+  optionClass: "live-data__timeInterval",
+  data: ["1min", "5min", "15min", "30min", "60min"]
 };
